@@ -11,13 +11,13 @@ sub name {
 sub home { $_[0]->config->{home} }
 
 sub setup {
-  my $class = shift;
+  my $class  = shift;
   my (%args) = @_;
-  my $name = $self->name;
+  my $name   = $self->name;
 
   my $prefix = uc($name) =~ s/::/_/gr;
-  my $home = $args{home} || $ENV{"${prefix}_HOME"} || do {
-    (my $file = $class) =~ s{::}{/}g;
+  my $home   = $args{home} || $ENV{"${prefix}_HOME"} || do {
+    ( my $file = $class ) =~ s{::}{/}g;
     $file .= '.pm';
     my $inc = $INC{$file} =~ s{\Q$file\E\z}{}r;
     $inc =~ s{[/\\]lib[/\\]\z}{}r;
@@ -28,21 +28,22 @@ sub setup {
 }
 
 my %config;
+
 sub config {
-  my $self = shift;
+  my $self  = shift;
   my $class = ref $self || $self;
 
   my $config = $config{$class} ||= {};
 
   my %new_config = @_ == 1 ? %{ $_[0] } : @_;
 
-  @{$config}{keys %new_config} = values %new_config;
+  @{$config}{ keys %new_config } = values %new_config;
 
   return $config;
 }
 
-sub finalize {}
-sub finalize_headers {}
+sub finalize         { }
+sub finalize_headers { }
 
 sub res {
   my $self = shift;
