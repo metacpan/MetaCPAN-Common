@@ -15,11 +15,11 @@ use Moo;
 
 has name => (
   is       => 'ro',
-  requires => 1,
+  required => 1,
 );
 has path => (
   is       => 'ro',
-  requires => 1,
+  required => 1,
   coerce   => sub { rel2abs( $_[0] ) },
 );
 
