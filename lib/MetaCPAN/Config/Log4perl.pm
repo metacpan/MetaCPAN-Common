@@ -8,7 +8,10 @@ extends 'MetaCPAN::Config';
 
 has '+name' => ( default => 'log4perl', );
 
-has '+config' => ( handles => [qw(parse)], );
+sub parse {
+  my ($self) = @_;
+  $self->config->{log4perl};
+}
 
 around _build_config => sub {
   my ( $orig, $self ) = ( shift, shift );
@@ -37,7 +40,7 @@ sub init {
 
   require Log::Log4perl;
   Log::Log4perl->reset;
-  Log::Log4perl->init( $self->config );
+  Log::Log4perl->init($self);
 
   require MetaCPAN::Logger::WarnHandler;
   MetaCPAN::Logger::WarnHandler->import;
