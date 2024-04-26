@@ -72,7 +72,7 @@ my $mymeta_broken = $mymeta && $eumm_version < 6.57_07;
 ( $MM_ARGS{NAME} = $META{name} ) =~ s/-/::/g
   if !$MM_ARGS{NAME};
 ( $MM_ARGS{VERSION_FROM} = "lib/$MM_ARGS{NAME}.pm" ) =~ s{::}{/}g
-  if !$MM_ARGS{VERSION} && $MM_ARGS{VERSION_FROM};
+  if !$MM_ARGS{VERSION} && !$MM_ARGS{VERSION_FROM};
 $MM_ARGS{ABSTRACT_FROM} ||= $MM_ARGS{VERSION_FROM}
   if !$MM_ARGS{ABSTRACT};
 $MM_ARGS{AUTHOR} ||= $META{author};
