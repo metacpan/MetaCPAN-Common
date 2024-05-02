@@ -2,6 +2,16 @@ package MetaCPAN::SurrogateKeys;
 use strict;
 use warnings;
 
+use Exporter qw(import);
+
+our @EXPORT_OK = qw(
+  keys_for_author
+  keys_for_dist
+  keys_for_frontend
+  keys_for_type
+  keys_for_user
+);
+
 sub keys_for_user {
   return
     map 'user=' . $_,
