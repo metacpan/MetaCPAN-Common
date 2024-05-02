@@ -1,4 +1,5 @@
 package Catalyst::Plugin::MetaCPAN::Config;
+
 use Moose::Role;
 
 use MetaCPAN::Config;

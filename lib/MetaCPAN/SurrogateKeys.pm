@@ -1,4 +1,5 @@
 package MetaCPAN::SurrogateKeys;
+
 use strict;
 use warnings;
 

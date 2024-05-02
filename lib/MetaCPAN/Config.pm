@@ -1,4 +1,5 @@
 package MetaCPAN::Config;
+
 use strict;
 use warnings;
 

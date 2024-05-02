@@ -1,4 +1,5 @@
 package MetaCPAN::Config::Log4perl;
+
 use strict;
 use warnings;
 

@@ -1,4 +1,5 @@
 package Plack::Middleware::MetaCPAN::ReverseProxy;
+
 use Moo;
 
 with qw(MetaCPAN::Role::Middleware);

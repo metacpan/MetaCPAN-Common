@@ -1,4 +1,5 @@
 package Plack::Middleware::MetaCPAN::L4PContext;
+
 use Moo;
 
 use Log::Log4perl::MDC ();

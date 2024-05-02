@@ -1,4 +1,5 @@
 package MetaCPAN::Role::Middleware;
+
 use Moo::Role;
 
 has app => ( is => 'ro' );

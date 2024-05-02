@@ -1,4 +1,5 @@
 package Catalyst::Plugin::MetaCPAN::Fastly;
+
 use Moose::Role;
 
 use MetaCPAN::SurrogateKeys qw(

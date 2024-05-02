@@ -2,8 +2,7 @@ package MetaCPAN::Common;
 use strict;
 use warnings;
 
-our $VERSION = '0.001000';
-$VERSION =~ tr/_//d;
+our $VERSION = 'v1.0.0';
 
 1;
 __END__

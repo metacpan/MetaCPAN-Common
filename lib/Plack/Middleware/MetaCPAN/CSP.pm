@@ -1,4 +1,5 @@
 package Plack::Middleware::MetaCPAN::CSP;
+
 use Moo;
 
 use MetaCPAN::CSP   ();

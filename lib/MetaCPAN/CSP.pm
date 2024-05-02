@@ -1,4 +1,5 @@
 package MetaCPAN::CSP;
+
 use Moo;
 
 use Crypt::URandom          qw(urandom_ub);

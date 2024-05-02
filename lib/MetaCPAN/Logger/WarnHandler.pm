@@ -1,4 +1,5 @@
 package MetaCPAN::Logger::WarnHandler;
+
 use strict;
 use warnings;
 use Log::Log4perl ();
