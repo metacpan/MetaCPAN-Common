@@ -2,7 +2,7 @@ package Catalyst::Plugin::MetaCPAN::Config;
 use strict;
 use warnings;
 
-our $VERSION = 'v1.0.0';
+our $VERSION = 'v1.0.1';
 
 use Moose::Role;
 

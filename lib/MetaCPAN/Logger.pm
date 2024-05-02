@@ -2,7 +2,7 @@ package MetaCPAN::Logger;
 use strict;
 use warnings;
 
-our $VERSION = 'v1.0.0';
+our $VERSION = 'v1.0.1';
 
 use Log::Log4perl        ();
 use Log::Log4perl::Level ();
