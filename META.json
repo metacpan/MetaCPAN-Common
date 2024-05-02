@@ -1,0 +1,143 @@
+{
+   "abstract" : "a collection of modules useful to MetaCPAN project",
+   "author" : [
+      "Graham Knop <haarg@haarg.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 6.031, CPAN::Meta::Converter version 2.150010",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : 2
+   },
+   "name" : "MetaCPAN-Common",
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "0"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Test::CPAN::Changes" : "0.19",
+            "Test::CPAN::Meta" : "0",
+            "Test::CPAN::Meta::JSON" : "0.16",
+            "Test::EOL" : "0",
+            "Test::MinimumVersion" : "0",
+            "Test::Mojibake" : "0",
+            "Test::More" : "0.88",
+            "Test::NoTabs" : "0",
+            "Test::Pod" : "1.41",
+            "Test::Portability::Files" : "0",
+            "Test::Spelling" : "0.12",
+            "Test::Vars" : "0",
+            "Test::Version" : "1"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Config::General" : "2.65",
+            "Config::ZOMG" : "1.000000",
+            "Crypt::URandom" : "0.39",
+            "Log::Any" : "1.717",
+            "Log::Any::Adapter::Log4perl" : "0.09",
+            "Log::Contextual" : "0.008001",
+            "Log::Log4perl" : "1.57",
+            "Math::Random::ISAAC::XS" : "1.004",
+            "Moo" : "2.005005",
+            "Moo::Role" : "2.005005",
+            "Moose::Role" : "2.2207",
+            "Plack" : "1.0051",
+            "Ref::Util" : "0.204",
+            "namespace::clean" : "0.27",
+            "perl" : "v5.22.0"
+         }
+      },
+      "test" : {
+         "recommends" : {
+            "CPAN::Meta" : "2.120900"
+         },
+         "requires" : {
+            "ExtUtils::MakeMaker" : "0",
+            "File::Spec" : "0",
+            "IO::Handle" : "0",
+            "IPC::Open3" : "0",
+            "Test::More" : "0"
+         }
+      }
+   },
+   "provides" : {
+      "Catalyst::Plugin::MetaCPAN::Config" : {
+         "file" : "lib/Catalyst/Plugin/MetaCPAN/Config.pm",
+         "version" : "v1.0.0"
+      },
+      "Catalyst::Plugin::MetaCPAN::Fastly" : {
+         "file" : "lib/Catalyst/Plugin/MetaCPAN/Fastly.pm",
+         "version" : "v1.0.0"
+      },
+      "MetaCPAN::CSP" : {
+         "file" : "lib/MetaCPAN/CSP.pm",
+         "version" : "v1.0.0"
+      },
+      "MetaCPAN::Common" : {
+         "file" : "lib/MetaCPAN/Common.pm",
+         "version" : "v1.0.0"
+      },
+      "MetaCPAN::Config" : {
+         "file" : "lib/MetaCPAN/Config.pm",
+         "version" : "v1.0.0"
+      },
+      "MetaCPAN::Config::Log4perl" : {
+         "file" : "lib/MetaCPAN/Config/Log4perl.pm",
+         "version" : "v1.0.0"
+      },
+      "MetaCPAN::Logger" : {
+         "file" : "lib/MetaCPAN/Logger.pm",
+         "version" : "v1.0.0"
+      },
+      "MetaCPAN::Logger::WarnHandler" : {
+         "file" : "lib/MetaCPAN/Logger/WarnHandler.pm",
+         "version" : "v1.0.0"
+      },
+      "MetaCPAN::Role::Middleware" : {
+         "file" : "lib/MetaCPAN/Role/Middleware.pm",
+         "version" : "v1.0.0"
+      },
+      "MetaCPAN::SurrogateKeys" : {
+         "file" : "lib/MetaCPAN/SurrogateKeys.pm",
+         "version" : "v1.0.0"
+      },
+      "Plack::Middleware::MetaCPAN::CSP" : {
+         "file" : "lib/Plack/Middleware/MetaCPAN/CSP.pm",
+         "version" : "v1.0.0"
+      },
+      "Plack::Middleware::MetaCPAN::L4PContext" : {
+         "file" : "lib/Plack/Middleware/MetaCPAN/L4PContext.pm",
+         "version" : "v1.0.0"
+      },
+      "Plack::Middleware::MetaCPAN::ReverseProxy" : {
+         "file" : "lib/Plack/Middleware/MetaCPAN/ReverseProxy.pm",
+         "version" : "v1.0.0"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/metacpan/MetaCPAN-Common/issues"
+      },
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/metacpan/MetaCPAN-Common.git",
+         "web" : "https://github.com/metacpan/MetaCPAN-Common"
+      }
+   },
+   "version" : "v1.0.0",
+   "x_generated_by_perl" : "v5.38.2",
+   "x_serialization_backend" : "Cpanel::JSON::XS version 4.37",
+   "x_spdx_expression" : "Artistic-1.0-Perl OR GPL-1.0-or-later",
+   "x_static_install" : 1,
+   "x_use_unsafe_inc" : 0
+}
+
