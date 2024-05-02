@@ -55,7 +55,7 @@ __END__
 
 =head1 NAME
 
-Catalyst::Plugin::MetaCPAN::Fastly - Methods for catalyst fastly API intergration
+Catalyst::Plugin::MetaCPAN::Fastly - Methods for Catalyst Fastly API integration
 
 =head1 SYNOPSIS
 
@@ -67,7 +67,7 @@ Catalyst::Plugin::MetaCPAN::Fastly - Methods for catalyst fastly API intergratio
 
 This role includes L<CatalystX::Fastly::Role::Response>.
 
-Surrogate keys for the content type will be automatically added to the reponse
+Surrogate keys for the content type will be automatically added to the response
 headers.
 
 =head1 METHODS
