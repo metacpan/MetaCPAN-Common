@@ -1,5 +1,7 @@
 use strict;
 use warnings;
+requires 'perl' => 'v5.22';
+
 requires 'Config::General'             => '2.65';
 requires 'Config::ZOMG'                => '1.000000';
 requires 'Crypt::URandom'              => '0.39';
