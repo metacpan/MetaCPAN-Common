@@ -37,6 +37,8 @@ sub call {
 1;
 __END__
 
+=for stopwords MDC
+
 =head1 NAME
 
 Plack::Middleware::MetaCPAN::L4PContext - Log4perl MDC population from request data
