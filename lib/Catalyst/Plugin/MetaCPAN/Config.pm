@@ -1,4 +1,8 @@
 package Catalyst::Plugin::MetaCPAN::Config;
+use strict;
+use warnings;
+
+our $VERSION = 'v1.0.0';
 
 use Moose::Role;
 
@@ -48,3 +52,5 @@ Catalyst::Plugin::MetaCPAN::Config - Load MetaCPAN::Config as Catalyst config
 
 This module uses MetaCPAN::Config to configure a Catalyst application. Similar
 to L<Catalyst::Plugin::ConfigLoader>.
+
+=cut

@@ -1,4 +1,8 @@
 package Plack::Middleware::MetaCPAN::CSP;
+use strict;
+use warnings;
+
+our $VERSION = 'v1.0.0';
 
 use Moo;
 
@@ -50,3 +54,10 @@ sub call {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+Plack::Middleware::MetaCPAN::CSP - CSP header configuration for MetaCPAN
+
+=cut

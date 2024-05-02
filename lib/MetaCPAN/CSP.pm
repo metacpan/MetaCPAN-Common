@@ -1,4 +1,8 @@
 package MetaCPAN::CSP;
+use strict;
+use warnings;
+
+our $VERSION = 'v1.0.0';
 
 use Moo;
 
@@ -98,3 +102,10 @@ sub header_value {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+MetaCPAN::CSP - Object for generating Content-Security-Policy headers
+
+=cut

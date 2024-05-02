@@ -1,4 +1,8 @@
 package Catalyst::Plugin::MetaCPAN::Fastly;
+use strict;
+use warnings;
+
+our $VERSION = 'v1.0.0';
 
 use Moose::Role;
 
@@ -86,3 +90,4 @@ Adds surrogate keys for the distribution C<Moose> to the response headers.
 
 Adds surrogate keys for the given user.
 
+=cut

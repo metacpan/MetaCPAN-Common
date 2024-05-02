@@ -1,6 +1,12 @@
 package MetaCPAN::Role::Middleware;
+use strict;
+use warnings;
+
+our $VERSION = 'v1.0.0';
 
 use Moo::Role;
+
+use namespace::clean;
 
 has app => ( is => 'ro' );
 requires 'call';
@@ -22,3 +28,10 @@ sub to_app {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+MetaCPAN::Role::Middleware - Moo role for creating Plack Middleware
+
+=cut

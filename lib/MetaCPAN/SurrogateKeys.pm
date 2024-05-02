@@ -1,7 +1,8 @@
 package MetaCPAN::SurrogateKeys;
-
 use strict;
 use warnings;
+
+our $VERSION = 'v1.0.0';
 
 use Exporter qw(import);
 
@@ -54,3 +55,10 @@ sub keys_for_frontend {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+MetaCPAN::SurrogateKeys - Surrogate keys for MetaCPAN content
+
+=cut

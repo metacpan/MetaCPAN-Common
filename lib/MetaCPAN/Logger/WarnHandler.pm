@@ -1,8 +1,12 @@
 package MetaCPAN::Logger::WarnHandler;
-
 use strict;
 use warnings;
+
+our $VERSION = 'v1.0.0';
+
 use Log::Log4perl ();
+
+use namespace::clean;
 
 Log::Log4perl->wrapper_register(__PACKAGE__);
 
@@ -23,3 +27,10 @@ sub import {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+MetaCPAN::Logger::WarnHandler - __WARN__ handler logging via Log::Log4perl
+
+=cut

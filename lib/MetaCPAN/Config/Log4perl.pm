@@ -1,9 +1,12 @@
 package MetaCPAN::Config::Log4perl;
-
 use strict;
 use warnings;
 
+our $VERSION = 'v1.0.0';
+
 use Moo;
+
+use namespace::clean;
 
 extends 'MetaCPAN::Config';
 
@@ -54,3 +57,10 @@ sub init {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+MetaCPAN::Config::Log4perl - Log4perl configuration loader for MetaCPAN
+
+=cut

@@ -1,6 +1,12 @@
 package Plack::Middleware::MetaCPAN::ReverseProxy;
+use strict;
+use warnings;
+
+our $VERSION = 'v1.0.0';
 
 use Moo;
+
+use namespace::clean;
 
 with qw(MetaCPAN::Role::Middleware);
 
@@ -24,3 +30,10 @@ sub call {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+Plack::Middleware::MetaCPAN::ReverseProxy - ReverseProxy middleware for MetaCPAN
+
+=cut

@@ -1,8 +1,14 @@
 package Plack::Middleware::MetaCPAN::L4PContext;
+use strict;
+use warnings;
+
+our $VERSION = 'v1.0.0';
 
 use Moo;
 
 use Log::Log4perl::MDC ();
+
+use namespace::clean;
 
 with qw(MetaCPAN::Role::Middleware);
 
@@ -29,3 +35,10 @@ sub call {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+Plack::Middleware::MetaCPAN::L4PContext - Log4perl MDC population from request data
+
+=cut

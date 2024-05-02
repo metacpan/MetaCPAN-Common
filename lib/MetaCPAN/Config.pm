@@ -1,7 +1,10 @@
 package MetaCPAN::Config;
-
 use strict;
 use warnings;
+
+our $VERSION = 'v1.0.0';
+
+use Moo;
 
 use Config::ZOMG;
 use Ref::Util qw(
@@ -12,7 +15,7 @@ use File::Spec::Functions qw(rel2abs);
 use Log::Log4perl         ();
 use Carp                  ();
 
-use Moo;
+use namespace::clean;
 
 has name => (
   is       => 'ro',
@@ -121,3 +124,10 @@ sub init_logger {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+MetaCPAN::Config - Configuration loader for MetaCPAN
+
+=cut
