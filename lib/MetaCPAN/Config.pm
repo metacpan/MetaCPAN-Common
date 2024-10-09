@@ -15,12 +15,18 @@ use File::Spec::Functions qw(rel2abs);
 use Log::Log4perl         ();
 use Carp                  ();
 use MetaCPAN::Common      qw(visit);
+use Module::Runtime       qw(require_module);
 
 use namespace::clean;
 
 has name => (
   is       => 'ro',
   required => 1,
+);
+
+has log_config_class => (
+  is => 'ro',
+  default => 'MetaCPAN::Config::Log4perl',
 );
 has path => (
   is       => 'ro',
@@ -77,8 +83,9 @@ has log_config => (
       }
     }
 
-    require MetaCPAN::Config::Log4perl;
-    MetaCPAN::Config::Log4perl->new($opts);
+    my $log_class = $self->log_config_class;
+    require_module($log_class);
+    $log_class->new($opts);
   },
   clearer => '_clear_log_config',
 );
