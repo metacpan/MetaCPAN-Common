@@ -9,9 +9,9 @@ use MetaCPAN::Common qw(visit);
 
 use namespace::clean;
 
-extends 'MetaCPAN::Config';
+with 'MetaCPAN::Role::Config';
 
-has '+name' => ( default => 'log4perl', );
+has '+name' => ( default => 'log4perl' );
 
 sub parse {
   my ($self) = @_;
