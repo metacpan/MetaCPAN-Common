@@ -5,6 +5,7 @@ use warnings;
 our $VERSION = 'v1.0.1';
 
 use Moo;
+use MetaCPAN::Common qw(visit);
 
 use namespace::clean;
 
@@ -22,7 +23,7 @@ around _build_config => sub {
   my $config = $self->$orig;
 
   my $l4p_config = {};
-  MetaCPAN::Config::_visit(
+  visit(
     $config,
     sub {
       my $value = $_;

@@ -14,6 +14,7 @@ use Ref::Util qw(
 use File::Spec::Functions qw(rel2abs);
 use Log::Log4perl         ();
 use Carp                  ();
+use MetaCPAN::Common      qw(visit);
 
 use namespace::clean;
 
@@ -44,49 +45,18 @@ sub _build_config {
 
   my %fallbacks = ( ROOT => $self->path, );
 
-  _visit(
+  return visit(
     $config,
     sub {
       s{\$\{(\w+)\}}{$config->{$1} // $ENV{$1} // $fallbacks{$1}}ge;
     }
   );
-  return $config;
 }
 
 sub reload {
   my $self = shift;
   $self->_clear_config;
   $self->config;
-}
-
-sub _visit {
-  my ( $config, $cb ) = @_;
-  my $new_config;
-  my @queue = [ [], $config, \$new_config ];
-  while (@queue) {
-    my ( $path, $item, $new ) = @{ +shift @queue };
-    if ( is_plain_hashref($item) ) {
-      $$new = {};
-      for my $key ( keys %$item ) {
-        my $value = $item->{$key};
-        push @queue, [ [ @$path, $key ], $value, \$$new->{$key} ];
-      }
-    }
-    elsif ( is_plain_arrayref($item) ) {
-      $$new = [];
-      for my $i ( 0 .. $#$item ) {
-        my $value = $item->[$i];
-        push @queue, [ [ @$path, $i ], $value, \$$new->[$i] ];
-      }
-    }
-    else {
-      $$new = $item;
-    }
-    for ($$new) {
-      $cb->($path);
-    }
-  }
-  return $new_config;
 }
 
 has log_config => (
