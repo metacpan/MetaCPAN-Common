@@ -13,7 +13,7 @@ use Ref::Util qw(
 );
 use File::Spec::Functions qw(rel2abs);
 use Log::Log4perl         ();
-use Carp                  ();
+use Carp                  qw(croak);
 use MetaCPAN::Common      qw(visit);
 use Module::Runtime       qw(require_module);
 
@@ -72,8 +72,20 @@ has log_config => (
 
     my $opts = { path => $self->path };
 
-    my $name = $self->config->{log4perl_file};
-    if ( defined $name ) {
+    if (my $l4p_config = $self->config->{log4perl}) {
+      if (!is_plain_hashref($l4p_config)) {
+        croak "log4perl value must be a hash ref, not a $l4p_config!";
+      }
+      elsif (grep !/\Alog4perl(?:\.|\z)/, keys %$l4p_config) {
+        $opts->{config} = {
+          log4perl => $l4p_config,
+        };
+      }
+      else {
+        $opts->{config} = $l4p_config;
+      }
+    }
+    elsif (my $name = $self->config->{log4perl_file}) {
       if ( $name =~ m{/} ) {
         Carp::cluck(
           "Ignoring log4perl_file config '$name' in different directory!");
