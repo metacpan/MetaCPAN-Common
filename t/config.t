@@ -24,26 +24,24 @@ is_deeply(
 );
 
 is_deeply(
-  $config->log_config->config,
+  $config->log_config->parse,
   {
-    log4perl => {
-      appender => {
-        OUTPUT => {
-          layout => {
-            ConversionPattern => {
-              value => "[%d] [%p] [%X{url}] %m%n",
-            },
-            value => "PatternLayout",
+    appender => {
+      OUTPUT => {
+        layout => {
+          ConversionPattern => {
+            value => "[%d] [%p] [%X{url}] %m%n",
           },
-          stderr => {
-            value => 1,
-          },
-          value => "Log::Log4perl::Appender::Screen",
+          value => "PatternLayout",
         },
+        stderr => {
+          value => 1,
+        },
+        value => "Log::Log4perl::Appender::Screen",
       },
-      rootLogger => {
-        value => "DEBUG, OUTPUT",
-      },
+    },
+    rootLogger => {
+      value => "DEBUG, OUTPUT",
     },
   },
   'Log4perl config is correct'
@@ -55,26 +53,24 @@ my $nested_log = MetaCPAN::Config::Log4perl->new(
 );
 
 is_deeply(
-  $nested_log->config,
+  $nested_log->parse,
   {
-    log4perl => {
-      appender => {
-        OUTPUT => {
-          layout => {
-            ConversionPattern => {
-              value => "[%d] [%p] [%X{url}] %m%n",
-            },
-            value => "PatternLayout",
+    appender => {
+      OUTPUT => {
+        layout => {
+          ConversionPattern => {
+            value => "[%d] [%p] [%X{url}] %m%n",
           },
-          stderr => {
-            value => 1,
-          },
-          value => "Log::Log4perl::Appender::Screen",
+          value => "PatternLayout",
         },
+        stderr => {
+          value => 1,
+        },
+        value => "Log::Log4perl::Appender::Screen",
       },
-      rootLogger => {
-        value => "DEBUG, OUTPUT",
-      },
+    },
+    rootLogger => {
+      value => "DEBUG, OUTPUT",
     },
   },
   'Nested Log4perl config is correct'

@@ -13,14 +13,19 @@ with 'MetaCPAN::Role::Config';
 
 has '+name' => ( default => 'log4perl' );
 
-sub parse {
-  my ($self) = @_;
-  $self->config->{log4perl};
-}
+has parse => (
+  is => 'lazy',
+  clearer => 1,
+);
 
-around _build_config => sub {
-  my ( $orig, $self ) = ( shift, shift );
-  my $config = $self->$orig;
+after _clear_config => sub {
+  my $self = shift;
+  $self->_clear_parse;
+};
+
+sub _build_parse {
+  my $self = shift;
+  my $config = $self->config;
 
   my $l4p_config = {};
   visit(
@@ -40,8 +45,8 @@ around _build_config => sub {
       $pos->{value} = $value;
     }
   );
-  return $l4p_config;
-};
+  return $l4p_config->{log4perl};
+}
 
 sub init {
   my $self = shift;
