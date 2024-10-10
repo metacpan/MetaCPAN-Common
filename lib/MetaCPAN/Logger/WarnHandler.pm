@@ -12,7 +12,7 @@ Log::Log4perl->wrapper_register(__PACKAGE__);
 
 my $logger;
 
-sub warn_handler {
+sub _warn_handler {
   local $@;
   if ( $logger ||= eval { Log::Log4perl->get_logger } ) {
     $logger->warn(@_);
@@ -23,7 +23,7 @@ sub warn_handler {
 }
 
 sub import {
-  $SIG{__WARN__} = \&warn_handler;
+  $SIG{__WARN__} = \&_warn_handler;
 }
 
 1;

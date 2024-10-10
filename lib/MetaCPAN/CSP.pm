@@ -33,13 +33,13 @@ has _directives => (
 
 my $rng = Math::Random::ISAAC::XS->new( unpack( "C*", urandom_ub(16) ) );
 
-sub nonce_generator {
+sub _nonce_generator {
   sprintf( '%x', $rng->irand );
 }
 
 has nonce_gen => (
   is      => 'ro',
-  default => sub { \&nonce_generator },
+  default => sub { \&_nonce_generator },
 );
 
 has nonce => (
