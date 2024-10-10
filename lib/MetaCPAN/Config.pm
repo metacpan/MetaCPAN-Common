@@ -72,7 +72,7 @@ sub _visit {
         push @queue, [ [ @$path, $key ], $value, \$$new->{$key} ];
       }
     }
-    elsif ( is_plain_hashref($item) ) {
+    elsif ( is_plain_arrayref($item) ) {
       $$new = [];
       for my $i ( 0 .. $#$item ) {
         my $value = $item->[$i];
@@ -81,9 +81,9 @@ sub _visit {
     }
     else {
       $$new = $item;
-      for ($$new) {
-        $cb->($path);
-      }
+    }
+    for ($$new) {
+      $cb->($path);
     }
   }
   return $new_config;

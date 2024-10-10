@@ -25,6 +25,9 @@ around _build_config => sub {
   MetaCPAN::Config::_visit(
     $config,
     sub {
+      my $value = $_;
+      return
+        if ref $value;
       my @path = split /\./, join '.', @{ +shift };
       if ( $path[-1] =~ /\A(?:_|value|)\z/ ) {
         pop @path;
@@ -33,7 +36,7 @@ around _build_config => sub {
       for my $path (@path) {
         $pos = $pos->{$path} ||= {};
       }
-      $pos->{value} = $_;
+      $pos->{value} = $value;
     }
   );
   return $l4p_config;
