@@ -15,4 +15,5 @@ requires 'Moo::Role'                   => '2.005005';
 requires 'Moose::Role'                 => '2.2207';
 requires 'Plack'                       => '1.0051';
 requires 'Ref::Util'                   => '0.204';
+requires 'Types::Standard'             => '2.000000';
 requires 'namespace::clean'            => '0.27';
