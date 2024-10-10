@@ -47,8 +47,9 @@ sub visit {
   return $new_config;
 }
 
-sub dpath :lvalue {
-  my ($data, $path) = @_;
+sub dpath {
+  my ($data, $path, $value) = @_;
+  my $set = @_ > 2;
   my @path;
   while ($path =~ s/\A((?:[^\\.]|\\[\\.])+)(?:\.|\z)//) {
     my $seg = $1;
@@ -60,16 +61,38 @@ sub dpath :lvalue {
   my $current = \$data;
   for my $seg (@path) {
     if (!defined $$current) {
-      last;
+      if ($set) {
+        if ($seg =~ /\A[0-9]\z/) {
+          $$current = [];
+        }
+        else {
+          $$current = {};
+        }
+      }
+      else {
+        return undef;
+      }
     }
-    elsif (is_plain_arrayref($$current)) {
+
+    if (is_plain_arrayref($$current)) {
+      if (!$set && @$$current <= $seg) {
+        return undef;
+      }
       $current = \($$current->[$seg]);
     }
     else {
+      if (!$set && !exists $$current->{$seg}) {
+        return undef;
+      }
       $current = \($$current->{$seg});
     }
   }
-  $$current;
+
+  if ($set) {
+    $$current = $value;
+  }
+
+  return $$current;
 }
 
 1;
