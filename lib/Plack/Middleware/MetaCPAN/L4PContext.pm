@@ -17,19 +17,35 @@ has reset => (
   default => !!1,
 );
 
+has headers => (
+  is => 'ro',
+  default => sub { qr/^Sec-|^Referer$/ },
+);
+
 sub call {
   my ( $self, $env ) = @_;
+  my $header_rx = $self->headers;
   my $mdc = Log::Log4perl::MDC->get_context;
   %$mdc = (
     ( $self->reset ? () : %$mdc ),
     ip     => $env->{REMOTE_ADDR},
     method => $env->{REMOTE_METHOD},
     url    => $env->{REQUEST_URI},
-    map +(
-      lc($_) =~ s/_(.)/-\u$1/gr =~ s/^http-//r => $env->{$_}
-    ),
-    grep /^HTTP_(?:SEC_|REFERER$)/,
-    keys %$env
+    map {
+      if (/^HTTP_(.*)$/) {
+        my $header = lc($1) =~ s/_(.)/-\u$1/gr;
+        my $value = $env->{$_};
+        if ($header =~ $header_rx) {
+          ($header => $value);
+        }
+        else {
+          ();
+        }
+      }
+      else {
+        ();
+      }
+    } keys %$env
   );
   $self->app($env);
 }
