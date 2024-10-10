@@ -2,7 +2,6 @@ use strict;
 use warnings;
 requires 'perl' => 'v5.22';
 
-requires 'Config::General'             => '2.65';
 requires 'Config::ZOMG'                => '1.000000';
 requires 'Crypt::URandom'              => '0.39';
 requires 'Log::Any'                    => '1.717';
@@ -17,3 +16,6 @@ requires 'Plack'                       => '1.0051';
 requires 'Ref::Util'                   => '0.204';
 requires 'Types::Standard'             => '2.000000';
 requires 'namespace::clean'            => '0.27';
+
+test_requires 'Config::General'        => '2.65';
+test_requires 'Test::More'             => '0.96';
