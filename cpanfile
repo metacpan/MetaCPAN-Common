@@ -2,6 +2,7 @@ use strict;
 use warnings;
 requires 'perl' => 'v5.22';
 
+requires 'CatalystX::Fastly::Role::Response' => '0.07';
 requires 'Config::ZOMG'                => '1.000000';
 requires 'Crypt::URandom'              => '0.39';
 requires 'Log::Any'                    => '1.717';
