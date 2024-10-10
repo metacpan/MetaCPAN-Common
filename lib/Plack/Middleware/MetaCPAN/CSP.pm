@@ -56,8 +56,18 @@ sub call {
 1;
 __END__
 
+=pod
+
+=encoding UTF-8
+
 =head1 NAME
 
 Plack::Middleware::MetaCPAN::CSP - CSP header configuration for MetaCPAN
+
+=head1 ATTRIBUTES
+
+=head2 policy
+
+=head2 digest
 
 =cut

@@ -53,10 +53,20 @@ sub call {
 1;
 __END__
 
+=pod
+
+=encoding UTF-8
+
 =for stopwords MDC
 
 =head1 NAME
 
 Plack::Middleware::MetaCPAN::L4PContext - Log4perl MDC population from request data
+
+=head1 ATTRIBUTES
+
+=head2 reset
+
+=head2 headers
 
 =cut

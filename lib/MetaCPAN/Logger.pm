@@ -23,6 +23,10 @@ sub default_import     {qw(:log :dlog)}
 1;
 __END__
 
+=pod
+
+=encoding UTF-8
+
 =head1 NAME
 
 MetaCPAN::Logger - Log::Contextual configured for MetaCPAN

@@ -106,9 +106,22 @@ sub reload {
 1;
 __END__
 
+=pod
+
+=encoding UTF-8
+
 =head1 NAME
 
 MetaCPAN::Role::Config - Configuration loader internals for MetaCPAN
 
-=cut
+=head1 ATTRIBUTES
 
+=head2 name
+
+=head2 path
+
+=head1 METHODS
+
+=head2 reload
+
+=cut

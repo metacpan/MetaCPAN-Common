@@ -98,13 +98,17 @@ sub dpath {
 1;
 __END__
 
+=pod
+
+=encoding UTF-8
+
 =head1 NAME
 
 MetaCPAN::Common - a collection of modules useful to MetaCPAN project
 
 =head1 SYNOPSIS
 
-  use MetaCPAN::Common qw(visit);
+  use MetaCPAN::Common qw(visit dpath);
 
 =head1 DESCRIPTION
 
@@ -116,7 +120,7 @@ of which can be found at L<https://github.com/metacpan/>.
 
 =head1 FUNCTIONS
 
-=head2 visit
+=head2 C<visit>
 
   my $new = visit($data, $callback);
 
@@ -155,7 +159,7 @@ construction, and will not have all of its data populated.
   #   ],
   # }
 
-=head2 dpath
+=head2 C<dpath>
 
   my $value = dpath($data, $path);
 

@@ -104,8 +104,30 @@ sub header_value {
 1;
 __END__
 
+=pod
+
+=encoding UTF-8
+
 =head1 NAME
 
 MetaCPAN::CSP - Object for generating Content-Security-Policy headers
+
+=head1 ATTRIBUTES
+
+=head2 digest
+
+=head2 nonce_gen
+
+=head2 policy
+
+=head1 METHODS
+
+=head2 add
+
+=head2 header_value
+
+=head2 nonce_for
+
+=head2 sha_for
 
 =cut

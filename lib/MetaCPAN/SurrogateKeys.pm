@@ -57,8 +57,24 @@ sub keys_for_frontend {
 1;
 __END__
 
+=pod
+
+=encoding UTF-8
+
 =head1 NAME
 
 MetaCPAN::SurrogateKeys - Surrogate keys for MetaCPAN content
+
+=head1 METHODS
+
+=head2 keys_for_user
+
+=head2 keys_for_author
+
+=head2 keys_for_dist
+
+=head2 keys_for_type
+
+=head2 keys_for_frontend
 
 =cut

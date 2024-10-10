@@ -70,8 +70,20 @@ sub init_logger {
 1;
 __END__
 
+=pod
+
+=encoding UTF-8
+
 =head1 NAME
 
 MetaCPAN::Config - Configuration loader for MetaCPAN
+
+=head1 ATTRIBUTES
+
+=head2 log_config_class
+
+=head1 METHODS
+
+=head2 init_logger
 
 =cut

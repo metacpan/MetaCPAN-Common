@@ -44,6 +44,12 @@ sub debug { ( $ENV{PLACK_ENV} // '' ) eq 'development' }
 1;
 __END__
 
+=pod
+
+=encoding UTF-8
+
+=for Pod::Coverage config_loader setup debug
+
 =head1 NAME
 
 Catalyst::Plugin::MetaCPAN::Config - Load MetaCPAN::Config as Catalyst config

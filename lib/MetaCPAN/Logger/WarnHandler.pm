@@ -29,6 +29,10 @@ sub import {
 1;
 __END__
 
+=pod
+
+=encoding UTF-8
+
 =head1 NAME
 
 MetaCPAN::Logger::WarnHandler - __WARN__ handler logging via Log::Log4perl

@@ -68,8 +68,16 @@ sub init {
 1;
 __END__
 
+=pod
+
+=encoding UTF-8
+
 =head1 NAME
 
 MetaCPAN::Config::Log4perl - Log4perl configuration loader for MetaCPAN
+
+=head1 METHODS
+
+=head2 init
 
 =cut
