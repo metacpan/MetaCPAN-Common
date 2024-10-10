@@ -9,7 +9,7 @@ our $VERSION = 'v1.0.1';
 use Config::ZOMG;
 use File::Spec::Functions qw(rel2abs);
 use Carp                  qw(croak confess);
-use MetaCPAN::Common      qw(visit);
+use MetaCPAN::Common      qw(visit dpath);
 
 use namespace::clean;
 
@@ -45,7 +45,7 @@ sub _build_config {
   return visit(
     $config,
     sub {
-      ref or s{\$\{(\w+)\}}{$config->{$1} // $ENV{$1} // $fallbacks{$1}}ge;
+      ref or s{\$\{(\w+)\}}{dpath($config, $1) // $ENV{$1} // $fallbacks{$1}}ge;
     }
   );
 }

@@ -4,6 +4,7 @@ use warnings;
 
 our $VERSION = 'v1.0.1';
 
+use Carp qw(croak);
 use Ref::Util qw(
   is_plain_arrayref
   is_plain_hashref
@@ -15,6 +16,7 @@ use Exporter qw(import);
 
 our @EXPORT_OK = qw(
   visit
+  dpath
 );
 
 sub visit {
@@ -43,6 +45,31 @@ sub visit {
     }
   }
   return $new_config;
+}
+
+sub dpath :lvalue {
+  my ($data, $path) = @_;
+  my @path;
+  while ($path =~ s/\A((?:[^\\.]|\\[\\.])+)(?:\.|\z)//) {
+    my $seg = $1;
+    $seg =~ s/\\(.)/$1/g;
+    push @path, $seg;
+  }
+  croak "invalid path at \"$path\""
+    if length $path;
+  my $current = \$data;
+  for my $seg (@path) {
+    if (!defined $$current) {
+      last;
+    }
+    elsif (is_plain_arrayref($$current)) {
+      $current = \($$current->[$seg]);
+    }
+    else {
+      $current = \($$current->{$seg});
+    }
+  }
+  $$current;
 }
 
 1;
@@ -104,6 +131,26 @@ construction, and will not have all of its data populated.
   #     'baz 2:guff',
   #   ],
   # }
+
+=head2 dpath
+
+  my $value = dpath($data, $path);
+
+Returns a value from a structure given a C<.> separated path.
+
+  my $data = {
+    a => [
+      {
+        b => "c",
+      },
+    ],
+  };
+
+  dpath($data, 'a.0.b') eq "c";
+
+The function can also be assigned to to modify the structure.
+
+  dpath($data, 'a.0') = {};
 
 =head1 AUTHOR
 
