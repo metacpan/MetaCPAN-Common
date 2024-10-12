@@ -6,7 +6,8 @@ our $VERSION = 'v1.0.1';
 
 use Moose::Role;
 
-use MetaCPAN::Config;
+use MetaCPAN::Config ();
+use Log::Log4perl::Catalyst ();
 
 use namespace::clean;
 
@@ -21,7 +22,7 @@ sub config_loader {
     if defined $$config_loader_ref;
   $$config_loader_ref = MetaCPAN::Config->new(
     name => $class,
-    path => $self->home,
+    path => $self->path_to->stringify,
   );
 }
 
