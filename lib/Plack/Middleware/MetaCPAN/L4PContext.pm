@@ -35,7 +35,7 @@ sub call {
   %$mdc = (
     ( $self->reset ? () : %$mdc ),
     ip     => $env->{REMOTE_ADDR},
-    method => $env->{REMOTE_METHOD},
+    method => $env->{REQUEST_METHOD},
     url    => $env->{REQUEST_URI},
     (
       map {
