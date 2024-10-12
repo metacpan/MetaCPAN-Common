@@ -17,12 +17,7 @@ with qw(MetaCPAN::Role::Middleware);
 has policy => (
   is      => 'ro',
   default => sub { +{} },
-  isa     => ( HashRef [ArrayRef] )->plus_coercions(
-    HashRef [Str] => sub {
-      my $hash = shift;
-      +{ map +( $_ => [ split /;\s*/, $hash->{$_} ] ), keys %$hash };
-    },
-  ),
+  isa     => ( HashRef [ArrayRef] ),
 );
 
 has digest => (
