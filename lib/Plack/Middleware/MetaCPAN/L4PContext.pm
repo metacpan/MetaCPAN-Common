@@ -22,8 +22,14 @@ has headers => (
   default => sub {qr/^Sec-|^Referer$/},
 );
 
+has extras => (
+  is      => 'ro',
+  default => sub { {} },
+);
+
 sub call {
   my ( $self, $env ) = @_;
+  my $extras    = $self->extras;
   my $header_rx = $self->headers;
   my $mdc       = Log::Log4perl::MDC->get_context;
   %$mdc = (
@@ -31,21 +37,28 @@ sub call {
     ip     => $env->{REMOTE_ADDR},
     method => $env->{REMOTE_METHOD},
     url    => $env->{REQUEST_URI},
-    map {
-      if (/^HTTP_(.*)$/) {
-        my $header = lc($1) =~ s/_(.)/-\u$1/gr;
-        my $value = $env->{$_};
-        if ($header =~ $header_rx) {
-          ($header => $value);
+    (
+      map {
+        if (/^HTTP_(.*)$/) {
+          my $header = lc($1) =~ s/_(.)/-\u$1/gr;
+          my $value  = $env->{$_};
+          if ( $header =~ $header_rx ) {
+            ( $header => $value );
+          }
+          else {
+            ();
+          }
         }
         else {
           ();
         }
-      }
-      else {
-        ();
-      }
-    } keys %$env
+        }
+        keys %$env
+    ),
+    (
+      map +( exists $env->{$_} ? ( $_ => $env->{$_} ) : () ),
+      keys %$extras
+    ),
   );
   $self->app($env);
 }
