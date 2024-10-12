@@ -7,6 +7,7 @@ use Catalyst::Plugin::MetaCPAN::Fastly;
 use Plack::Middleware::MetaCPAN::ReverseProxy;
 use Plack::Middleware::MetaCPAN::L4PContext;
 use Plack::Middleware::MetaCPAN::CSP;
+use Plack::Middleware::MetaCPAN::RequestID;
 use MetaCPAN::Role::Middleware;
 use MetaCPAN::Common;
 use MetaCPAN::Logger;
