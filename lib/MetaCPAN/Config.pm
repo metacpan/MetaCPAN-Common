@@ -8,6 +8,7 @@ use Moo;
 
 use Carp            qw(cluck croak);
 use Module::Runtime qw(require_module);
+use Ref::Util       qw(is_plain_hashref);
 
 use namespace::clean;
 
