@@ -60,7 +60,7 @@ sub call {
       keys %$extras
     ),
   );
-  $self->app($env);
+  $self->app->($env);
 }
 
 1;
