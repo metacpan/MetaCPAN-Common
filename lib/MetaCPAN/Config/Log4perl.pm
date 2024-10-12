@@ -14,7 +14,7 @@ with 'MetaCPAN::Role::Config';
 has '+name' => ( default => 'log4perl' );
 
 has parse => (
-  is => 'lazy',
+  is      => 'lazy',
   clearer => 1,
 );
 
@@ -24,7 +24,7 @@ after _clear_config => sub {
 };
 
 sub _build_parse {
-  my $self = shift;
+  my $self   = shift;
   my $config = $self->config;
 
   my $l4p_config = {};

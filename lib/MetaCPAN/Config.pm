@@ -14,7 +14,7 @@ use namespace::clean;
 with 'MetaCPAN::Role::Config';
 
 has log_config_class => (
-  is => 'ro',
+  is      => 'ro',
   default => 'MetaCPAN::Config::Log4perl',
 );
 
@@ -23,24 +23,20 @@ has log_config => (
   default => sub {
     my $self = shift;
 
-    my $opts = {
-      path => $self->path,
-    };
+    my $opts = { path => $self->path };
 
-    if (my $l4p_config = $self->config->{log4perl}) {
-      if (!is_plain_hashref($l4p_config)) {
+    if ( my $l4p_config = $self->config->{log4perl} ) {
+      if ( !is_plain_hashref($l4p_config) ) {
         croak "log4perl value must be a hash ref, not a $l4p_config!";
       }
-      elsif (grep !/\Alog4perl(?:\.|\z)/, keys %$l4p_config) {
-        $opts->{config} = {
-          log4perl => $l4p_config,
-        };
+      elsif ( grep !/\Alog4perl(?:\.|\z)/, keys %$l4p_config ) {
+        $opts->{config} = { log4perl => $l4p_config };
       }
       else {
         $opts->{config} = $l4p_config;
       }
     }
-    elsif (my $name = $self->config->{log4perl_file}) {
+    elsif ( my $name = $self->config->{log4perl_file} ) {
       if ( $name =~ m{/} ) {
         cluck(
           "Ignoring log4perl_file config '$name' in different directory!");

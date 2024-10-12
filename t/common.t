@@ -38,30 +38,37 @@ subtest 'visit' => sub {
   );
 
   my $event = 0;
-  my $clone = visit($struct, sub {
-    my $path = join '.', @{+shift};
-    $event++;
-    my ($want_path, $want_element) = splice @events, 0, 2;
-    is $path, $want_path, "event $event: correct path";
-    if (ref) {
-      is ref $_, ref $want_element, "event $event: correct element type";
+  my $clone = visit(
+    $struct,
+    sub {
+      my $path = join '.', @{ +shift };
+      $event++;
+      my ( $want_path, $want_element ) = splice @events, 0, 2;
+      is $path, $want_path, "event $event: correct path";
+      if (ref) {
+        is ref $_, ref $want_element, "event $event: correct element type";
+      }
+      else {
+        is $_, $want_element, "event $event: correct element value";
+      }
     }
-    else {
-      is $_, $want_element, "event $event: correct element value";
-    }
-  });
+  );
 
   is scalar @events, 0, 'all events occurred';
 
   is_deeply $clone, $struct, 'returns clone';
-  isnt $clone, $struct, 'clone is not the same ref';
+  isnt $clone,         $struct,         'clone is not the same ref';
   isnt $clone->{a}{b}, $struct->{a}{b}, 'deep clone is not the same ref';
 
-  my $new = visit($struct, sub {
-    ref or $_++;
-  });
+  my $new = visit(
+    $struct,
+    sub {
+      ref or $_++;
+    }
+  );
 
-  is_deeply $new, {
+  is_deeply $new,
+    {
     a => {
       b => {},
       c => 'e',
@@ -76,31 +83,32 @@ subtest 'visit' => sub {
         },
       ],
     },
-  }, '$_ modifies current element';
+    },
+    '$_ modifies current element';
 
   is_deeply $struct, $clone, 'original struct is unmodified';
 };
 
 subtest 'dpath' => sub {
-  my $clone = visit($struct, sub {});
-  is dpath($clone, 'a.c'), 'd', 'can fetch value';
-  is dpath($clone, 'a.x'), undef, 'nonexistent value is undef';
-  is dpath($clone, 'a.x.y'), undef, 'nonexistent parent is undef';
+  my $clone = visit( $struct, sub { } );
+  is dpath( $clone, 'a.c' ),   'd',   'can fetch value';
+  is dpath( $clone, 'a.x' ),   undef, 'nonexistent value is undef';
+  is dpath( $clone, 'a.x.y' ), undef, 'nonexistent parent is undef';
 
   is_deeply $clone, $struct, 'no autovivification';
 
-  my $clone2 = visit($struct, sub {});
+  my $clone2 = visit( $struct, sub { } );
 
   $clone->{a}{b} = 'x';
-  dpath($clone2, 'a.b', 'x');
+  dpath( $clone2, 'a.b', 'x' );
   is_deeply $clone2, $clone, 'can set value';
 
   $clone->{a}{x}{y} = 'z';
-  dpath($clone2, 'a.x.y', 'z');
+  dpath( $clone2, 'a.x.y', 'z' );
   is_deeply $clone2, $clone, 'can create deep value';
 
   $clone->{a}{l}[1]{m} = 123;
-  dpath($clone2, 'a.l.1.m', 123);
+  dpath( $clone2, 'a.l.1.m', 123 );
   is_deeply $clone2, $clone, 'can create deep array value';
 };
 

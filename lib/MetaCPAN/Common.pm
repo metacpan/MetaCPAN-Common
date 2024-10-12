@@ -4,7 +4,7 @@ use warnings;
 
 our $VERSION = 'v1.0.1';
 
-use Carp qw(croak);
+use Carp      qw(croak);
 use Ref::Util qw(
   is_plain_arrayref
   is_plain_hashref
@@ -28,13 +28,13 @@ sub visit {
     if ( is_plain_hashref($item) ) {
       $$new = {};
       for my $key ( reverse sort keys %$item ) {
-        push @queue, [ [ @$path, $key ], $item->{$key}, \($$new->{$key}) ];
+        push @queue, [ [ @$path, $key ], $item->{$key}, \( $$new->{$key} ) ];
       }
     }
     elsif ( is_plain_arrayref($item) ) {
       $$new = [];
       for my $i ( reverse 0 .. $#$item ) {
-        push @queue, [ [ @$path, $i ], $item->[$i], \($$new->[$i]) ];
+        push @queue, [ [ @$path, $i ], $item->[$i], \( $$new->[$i] ) ];
       }
     }
     else {
@@ -48,10 +48,10 @@ sub visit {
 }
 
 sub dpath {
-  my ($data, $path, $value) = @_;
+  my ( $data, $path, $value ) = @_;
   my $set = @_ > 2;
   my @path;
-  while ($path =~ s/\A((?:[^\\.]|\\[\\.])+)(?:\.|\z)//) {
+  while ( $path =~ s/\A((?:[^\\.]|\\[\\.])+)(?:\.|\z)// ) {
     my $seg = $1;
     $seg =~ s/\\(.)/$1/g;
     push @path, $seg;
@@ -60,9 +60,9 @@ sub dpath {
     if length $path;
   my $current = \$data;
   for my $seg (@path) {
-    if (!defined $$current) {
+    if ( !defined $$current ) {
       if ($set) {
-        if ($seg =~ /\A[0-9]\z/) {
+        if ( $seg =~ /\A[0-9]\z/ ) {
           $$current = [];
         }
         else {
@@ -74,17 +74,17 @@ sub dpath {
       }
     }
 
-    if (is_plain_arrayref($$current)) {
-      if (!$set && @$$current <= $seg) {
+    if ( is_plain_arrayref($$current) ) {
+      if ( !$set && @$$current <= $seg ) {
         return undef;
       }
-      $current = \($$current->[$seg]);
+      $current = \( $$current->[$seg] );
     }
     else {
-      if (!$set && !exists $$current->{$seg}) {
+      if ( !$set && !exists $$current->{$seg} ) {
         return undef;
       }
-      $current = \($$current->{$seg});
+      $current = \( $$current->{$seg} );
     }
   }
 

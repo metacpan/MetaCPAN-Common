@@ -18,14 +18,14 @@ has reset => (
 );
 
 has headers => (
-  is => 'ro',
-  default => sub { qr/^Sec-|^Referer$/ },
+  is      => 'ro',
+  default => sub {qr/^Sec-|^Referer$/},
 );
 
 sub call {
   my ( $self, $env ) = @_;
   my $header_rx = $self->headers;
-  my $mdc = Log::Log4perl::MDC->get_context;
+  my $mdc       = Log::Log4perl::MDC->get_context;
   %$mdc = (
     ( $self->reset ? () : %$mdc ),
     ip     => $env->{REMOTE_ADDR},
