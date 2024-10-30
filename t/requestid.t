@@ -11,12 +11,9 @@ my $app = sub {
   my $env = shift;
   [ 200, [], [ $env->{'request-id'} ] ];
 };
-$app = Plack::Middleware::MetaCPAN::RequestID->wrap(
-  $app,
-  {
-    env_key => 'request-id',
-  }
-);
+$app = Plack::Middleware::MetaCPAN::RequestID->wrap( $app, {
+  env_key => 'request-id',
+} );
 
 test_psgi $app, sub {
   my $cb  = shift;

@@ -10,70 +10,61 @@ my $config = MetaCPAN::Config->new(
   name => 'MetaCPAN',
 );
 
-is_deeply(
-  $config->config,
-  {
-    "View::Xslate" => {
-      cache     => 1,
-      cache_dir => "var/tmp/templates",
-    },
-    log4perl_file => "log4perl.conf",
-    name          => "MetaCPAN",
+is_deeply $config->config, {
+  "View::Xslate" => {
+    cache     => 1,
+    cache_dir => "var/tmp/templates",
   },
-  'config is correct'
-);
+  log4perl_file => "log4perl.conf",
+  name          => "MetaCPAN",
+},
+  'config is correct';
 
-is_deeply(
-  $config->log_config->parse,
-  {
-    appender => {
-      OUTPUT => {
-        layout => {
-          ConversionPattern => {
-            value => "[%d] [%p] [%X{url}] %m%n",
-          },
-          value => "PatternLayout",
+is_deeply $config->log_config->parse, {
+  appender => {
+    OUTPUT => {
+      layout => {
+        ConversionPattern => {
+          value => "[%d] [%p] [%X{url}] %m%n",
         },
-        stderr => {
-          value => 1,
-        },
-        value => "Log::Log4perl::Appender::Screen",
+        value => "PatternLayout",
       },
-    },
-    rootLogger => {
-      value => "DEBUG, OUTPUT",
+      stderr => {
+        value => 1,
+      },
+      value => "Log::Log4perl::Appender::Screen",
     },
   },
-  'Log4perl config is correct'
-);
+  rootLogger => {
+    value => "DEBUG, OUTPUT",
+  },
+},
+  'Log4perl config is correct';
 
 my $nested_log = MetaCPAN::Config::Log4perl->new(
   path => 'corpus',
   name => 'log4perl_nested',
 );
 
-is_deeply(
-  $nested_log->parse,
-  {
-    appender => {
-      OUTPUT => {
-        layout => {
-          ConversionPattern => {
-            value => "[%d] [%p] [%X{url}] %m%n",
-          },
-          value => "PatternLayout",
+is_deeply $nested_log->parse, {
+  appender => {
+    OUTPUT => {
+      layout => {
+        ConversionPattern => {
+          value => "[%d] [%p] [%X{url}] %m%n",
         },
-        stderr => {
-          value => 1,
-        },
-        value => "Log::Log4perl::Appender::Screen",
+        value => "PatternLayout",
       },
-    },
-    rootLogger => {
-      value => "DEBUG, OUTPUT",
+      stderr => {
+        value => 1,
+      },
+      value => "Log::Log4perl::Appender::Screen",
     },
   },
-  'Nested Log4perl config is correct'
-);
+  rootLogger => {
+    value => "DEBUG, OUTPUT",
+  },
+},
+  'Nested Log4perl config is correct';
 
 done_testing;

@@ -26,12 +26,11 @@ subtest 'L4PContext default options' => sub {
     my $cb   = shift;
     my $res  = $cb->( GET "/" );
     my $data = eval $res->content;    ## no critic (BuiltinFunctions::ProhibitStringyEval)
-    is_deeply $data,
-      {
+    is_deeply $data, {
       method => 'GET',
       url    => '/',
       ip     => '127.0.0.1',
-      };
+    };
   };
 };
 

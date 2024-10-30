@@ -67,8 +67,7 @@ subtest 'visit' => sub {
     }
   );
 
-  is_deeply $new,
-    {
+  is_deeply $new, {
     a => {
       b => {},
       c => 'e',
@@ -83,7 +82,7 @@ subtest 'visit' => sub {
         },
       ],
     },
-    },
+  },
     '$_ modifies current element';
 
   is_deeply $struct, $clone, 'original struct is unmodified';
