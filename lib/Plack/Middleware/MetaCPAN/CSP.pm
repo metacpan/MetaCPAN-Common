@@ -43,7 +43,7 @@ sub call {
     sub {
       my $res = shift;
       Plack::Util::header_set( $res->[1],
-        'Content-Security-Protocol' => $csp->header );
+        'Content-Security-Policy' => $csp->header_value );
     }
   );
 }
