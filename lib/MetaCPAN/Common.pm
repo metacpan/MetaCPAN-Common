@@ -178,23 +178,3 @@ Returns a value from a structure given a C<.> separated path.
 The function can also be assigned to to modify the structure.
 
   dpath($data, 'a.0') = {};
-
-=head1 AUTHOR
-
-haarg - Graham Knop (cpan:HAARG) <haarg@haarg.org>
-
-=head1 CONTRIBUTORS
-
-None so far.
-
-=head1 COPYRIGHT
-
-Copyright (c) 2024 the MetaCPAN::Common L</AUTHOR> and L</CONTRIBUTORS>
-as listed above.
-
-=head1 LICENSE
-
-This library is free software and may be distributed under the same terms
-as perl itself. See L<https://dev.perl.org/licenses/>.
-
-=cut
