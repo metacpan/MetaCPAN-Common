@@ -80,7 +80,7 @@ sub nonce_for {
   my ( $self, $directive ) = @_;
   my $directives = $self->_directives;
   my $nonce      = $self->nonce;
-  $directives->{$directive}{"nonce-$nonce"} = 1;
+  $directives->{$directive}{"'nonce-$nonce'"} = 1;
   return $nonce;
 }
 
@@ -89,7 +89,7 @@ sub sha_for {
   my $directives = $self->_directives;
   my $alg        = $self->digest;
   my $digest     = $digest_sub{$alg}->($content);
-  $directives->{$directive}{"$alg-$digest"} = 1;
+  $directives->{$directive}{"'$alg-$digest'"} = 1;
   return $digest;
 }
 
