@@ -56,8 +56,10 @@ has digest => (
 );
 
 my %digest_sub = map { ## no critic (BuiltinFunctions::ProhibitComplexMappings)
-  no strict 'refs';
-  my $sub = \&{ 'Digest::SHA::' . $_ . '_base64' };
+  my $sub = do {
+    no strict 'refs';
+    \&{ 'Digest::SHA::' . $_ . '_base64' };
+  };
   +(
     $_ => sub {
       my $digest = $sub->(shift);
