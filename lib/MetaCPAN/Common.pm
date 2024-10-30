@@ -49,7 +49,7 @@ sub visit {
 
 sub dpath {
   my ( $data, $path, $value ) = @_;
-  my $set = @_ > 2;
+  my $write = @_ > 2;
   my @path;
   while ( $path =~ s/\A((?:[^\\.]|\\[\\.])+)(?:\.|\z)// ) {
     my $seg = $1;
@@ -61,7 +61,7 @@ sub dpath {
   my $current = \$data;
   for my $seg (@path) {
     if ( !defined $$current ) {
-      if ($set) {
+      if ($write) {
         if ( $seg =~ /\A[0-9]\z/ ) {
           $$current = [];
         }
@@ -75,20 +75,20 @@ sub dpath {
     }
 
     if ( is_plain_arrayref($$current) ) {
-      if ( !$set && @$$current <= $seg ) {
+      if ( !$write && @$$current <= $seg ) {
         return undef;
       }
       $current = \( $$current->[$seg] );
     }
     else {
-      if ( !$set && !exists $$current->{$seg} ) {
+      if ( !$write && !exists $$current->{$seg} ) {
         return undef;
       }
       $current = \( $$current->{$seg} );
     }
   }
 
-  if ($set) {
+  if ($write) {
     $$current = $value;
   }
 

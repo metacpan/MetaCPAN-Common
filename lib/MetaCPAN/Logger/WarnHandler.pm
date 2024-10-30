@@ -18,12 +18,12 @@ sub _warn_handler {
     $logger->warn(@_);
   }
   else {
-    warn @_;
+    warn @_; ## no critic (ErrorHandling::RequireCarping)
   }
 }
 
 sub import {
-  $SIG{__WARN__} = \&_warn_handler;
+  $SIG{__WARN__} = \&_warn_handler; ## no critic (Variables::RequireLocalizedPunctuationVars)
 }
 
 1;

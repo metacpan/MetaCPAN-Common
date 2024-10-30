@@ -55,7 +55,7 @@ has digest => (
   isa     => $digest_type,
 );
 
-my %digest_sub = map {
+my %digest_sub = map { ## no critic (BuiltinFunctions::ProhibitComplexMappings)
   no strict 'refs';
   my $sub = \&{ 'Digest::SHA::' . $_ . '_base64' };
   +(
