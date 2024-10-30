@@ -19,13 +19,48 @@ has reset => (
 
 has headers => (
   is      => 'ro',
-  default => sub {qr/^Sec-|^Referer$/},
+  default => sub { qr/^Sec-|^Referer$/ },
 );
 
 has extras => (
   is      => 'ro',
   default => sub { {} },
 );
+
+my @headers = qw(
+  Accept-CH
+  Content-DPR
+  Critical-CH
+  DNT
+  DPR
+  ECT
+  ETag
+  Expect-CT
+  NEL
+  RTT
+  Sec-CH-UA
+  Sec-CH
+  Sec-GPC
+  SourceMap
+  TE
+  WWW-Authenticate
+  X-DNS-Prefetch-Control
+  X-XSS-Protection
+);
+my %header = map +(lc $_ => $_), @headers;
+my ($match_headers) = map qr/$_/i, join '|', @headers;
+
+sub _to_header {
+  my ( $env_param ) = @_;
+  if ($env_param =~ /^HTTP_(.*)$/) {
+    my $header = ucfirst(lc($1) =~ s/_(.)/-\u$1/gr);
+    if ($header =~ /^($match_headers)((?:-.*|\z))/) {
+      return $header{lc $1} . $2;
+    }
+    return $header;
+  }
+  return undef;
+}
 
 sub call {
   my ( $self, $env ) = @_;
@@ -38,26 +73,14 @@ sub call {
     method => $env->{REQUEST_METHOD},
     url    => $env->{REQUEST_URI},
     (
-      map {
-        if (/^HTTP_(.*)$/) {
-          my $header = lc($1) =~ s/_(.)/-\u$1/gr;
-          my $value  = $env->{$_};
-          if ( $header =~ $header_rx ) {
-            ( $header => $value );
-          }
-          else {
-            ();
-          }
-        }
-        else {
-          ();
-        }
-        }
-        keys %$env
-    ),
-    (
       map +( exists $env->{$_} ? ( $_ => $env->{$_} ) : () ),
       keys %$extras
+    ),
+    (
+      map {
+        my $header = _to_header($_);
+        $header && $header =~ $header_rx ? ( $header => $env->{$_} ) : ();
+      } keys %$env
     ),
   );
   $self->app->($env);

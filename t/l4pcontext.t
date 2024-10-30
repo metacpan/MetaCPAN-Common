@@ -24,12 +24,17 @@ subtest 'L4PContext default options' => sub {
 
   test_psgi $app, sub {
     my $cb   = shift;
-    my $res  = $cb->( GET "/" );
+    my $res  = $cb->( GET "/",
+      'sec-ch-ua-other' => 1,
+      'sec-ch-other' => 1,
+    );
     my $data = eval $res->content;    ## no critic (BuiltinFunctions::ProhibitStringyEval)
     is_deeply $data, {
       method => 'GET',
       url    => '/',
       ip     => '127.0.0.1',
+      'Sec-CH-UA-Other' => 1,
+      'Sec-CH-Other' => 1,
     };
   };
 };
