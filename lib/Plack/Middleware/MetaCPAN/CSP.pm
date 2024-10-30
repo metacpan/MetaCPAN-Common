@@ -34,7 +34,7 @@ sub call {
     digest => $self->digest,
   );
 
-  $env->{'csp.amend'}     = sub { $csp->amend(@_) };
+  $env->{'csp.add'}       = sub { $csp->add(@_) };
   $env->{'csp.nonce_for'} = sub { $csp->nonce_for(@_) };
   $env->{'csp.sha_for'}   = sub { $csp->sha_for(@_) };
 
