@@ -118,18 +118,42 @@ MetaCPAN::CSP - Object for generating Content-Security-Policy headers
 
 =head2 digest
 
+The digest algorithm to use. Can be one of C<sha256>, C<sha384>, or C<sha512>.
+Defaults to C<sha256>.
+
 =head2 nonce_gen
+
+A subroutine reference that generates a random string to use for a nonce.
+Defaults to generating a hex string using L<Math::Random::ISAAC::XS>.
 
 =head2 policy
 
+The starting policy as a hash ref of array refs.
+
+  {
+    'default-src' => q[qw(* data:)],
+    'script-src'  => q[qw('self')],
+  }
+
+This attribute will not reflect any modifications done by other methods.
+
 =head1 METHODS
 
-=head2 add
+=head2 add ( $directive, $rule, ... )
+
+Accepts pairs of directives and rules, and adds them to the policy.
+
+=head2 nonce_for ( $directive )
+
+Generates a nonce, adds it to the policy, and returns it.
+
+=head2 sha_for ( $directive, $content )
+
+Generates a digest of the content, adds it to the policy, and return it.
 
 =head2 header_value
 
-=head2 nonce_for
-
-=head2 sha_for
+Returns the CSP policy as a string to be used at the C<Content-Security-Policy>
+header.
 
 =cut

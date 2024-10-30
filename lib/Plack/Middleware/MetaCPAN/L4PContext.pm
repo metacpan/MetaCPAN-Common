@@ -99,12 +99,43 @@ __END__
 
 Plack::Middleware::MetaCPAN::L4PContext - Log4perl MDC population from request data
 
+=head1 DESCRIPTION
+
+Populates the L<Log4perl MDC|Log::Log4perl::MDC> with values taken from the
+L<PSGI> environment.
+
+Includes the following keys:
+
+=over 4
+
+=item C<ip>
+
+The remove address. Taken from C<REMOTE_ADDR>.
+
+=item C<method>
+
+The request method. Taken from C<REQUEST_METHOD>.
+
+=item C<url>
+
+The request URL. Taken from C<REQUEST_URI>.
+
+=back
+
 =head1 ATTRIBUTES
 
 =head2 reset
 
+Clear all existing values from the Log4perl context before adding. Defaults to
+true.
+
 =head2 headers
 
+A regex for HTTP headers to include in the Log4perl context. Defaults to
+C<qr/^Sec-|^Referer$/>.
+
 =head2 extras
+
+An array ref of additional L<PSGI> environment keys to include in the context.
 
 =cut

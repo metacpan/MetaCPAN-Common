@@ -35,6 +35,6 @@ __END__
 
 =head1 NAME
 
-MetaCPAN::Logger::WarnHandler - __WARN__ handler logging via Log::Log4perl
+MetaCPAN::Logger::WarnHandler - C<__WARN__> handler logging via Log::Log4perl
 
 =cut
