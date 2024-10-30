@@ -1,0 +1,24 @@
+runtime:
+  requires:
+    perl: v5.22
+
+    CatalystX::Fastly::Role::Response:  0.07
+    Config::ZOMG:                       1.000000
+    Crypt::URandom:                     0.39
+    Log::Any:                           1.717
+    Log::Any::Adapter::Log4perl:        0.09
+    Log::Contextual:                    0.008001
+    Log::Log4perl:                      1.57
+    Math::Random::ISAAC::XS:            1.004
+    Moo:                                2.005005
+    Moo::Role:                          2.005005
+    Moose::Role:                        2.2207
+    Plack:                              1.0051
+    Ref::Util:                          0.204
+    Types::Standard:                    2.000000
+    namespace::clean:                   0.27
+test:
+  requires:
+    Config::General:  2.65
+    Test::More:       0.96
+

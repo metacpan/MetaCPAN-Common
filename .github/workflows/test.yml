@@ -14,6 +14,8 @@ jobs:
       - name: Extract perl dependecy
         id: prereqs
         uses: perl-actions/get-prereqs@v1
+        with:
+          sources: prereqs.yml
       - id: perl-versions
         uses: perl-actions/perl-versions@v1
         with:
@@ -153,6 +155,7 @@ jobs:
         uses: perl-actions/get-prereqs@v1
         with:
           phases: configure
+          exclude: '^lib$'
       - name: Install configure deps
         uses: perl-actions/install-with-cpm@v1
         with:
@@ -166,6 +169,7 @@ jobs:
         with:
           phases: build test runtime develop
           relationships: requires recommends suggests
+          exclude: '^lib$'
       - name: Install deps
         uses: perl-actions/install-with-cpm@v1
         with:
