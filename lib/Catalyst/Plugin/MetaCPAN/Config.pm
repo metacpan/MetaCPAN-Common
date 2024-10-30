@@ -11,7 +11,7 @@ use Log::Log4perl::Catalyst ();
 
 use namespace::clean;
 
-sub config_loader {
+sub _config_loader {
   my $self              = shift;
   my $class             = ref $self || $self;
   my $config_loader_ref = do {
@@ -28,7 +28,7 @@ sub config_loader {
 
 before setup => sub {
   my $self   = shift;
-  my $loader = $self->config_loader;
+  my $loader = $self->_config_loader;
   $self->config( {
     disable_component_resolution_regex_fallback => 1,
     ignore_frontend_proxy                       => 1,
@@ -49,7 +49,7 @@ __END__
 
 =encoding UTF-8
 
-=for Pod::Coverage config_loader setup debug
+=for Pod::Coverage setup debug
 
 =head1 NAME
 
