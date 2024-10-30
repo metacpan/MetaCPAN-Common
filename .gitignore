@@ -2,7 +2,6 @@
 *~
 .#*
 /.build/
-/.tidyall.d/
 /MANIFEST.bak
 /MYMETA.*
 /Makefile
