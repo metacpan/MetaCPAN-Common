@@ -82,4 +82,6 @@ Plack::Middleware::MetaCPAN::L4PContext - Log4perl MDC population from request d
 
 =head2 headers
 
+=head2 extras
+
 =cut
