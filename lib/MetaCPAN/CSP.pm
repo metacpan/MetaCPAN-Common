@@ -31,15 +31,16 @@ has _directives => (
   },
 );
 
-my $rng = Math::Random::ISAAC::XS->new( unpack( "C*", urandom_ub(16) ) );
-
-sub _nonce_generator {
-  sprintf( '%x', $rng->irand );
+sub _build_nonce_generator {
+  my $rng = Math::Random::ISAAC::XS->new( unpack( "C*", urandom_ub(16) ) );
+  sub {
+    sprintf( '%x', $rng->irand );
+  };
 }
 
 has nonce_gen => (
-  is      => 'ro',
-  default => sub { \&_nonce_generator },
+  is      => 'lazy',
+  builder => 1,
 );
 
 has nonce => (
