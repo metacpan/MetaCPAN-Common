@@ -31,7 +31,7 @@ has _directives => (
   },
 );
 
-sub _build_nonce_generator {
+sub _build_nonce_gen {
   my $rng = Math::Random::ISAAC::XS->new( unpack( "C*", urandom_ub(16) ) );
   sub {
     sprintf( '%x', $rng->irand );
