@@ -58,6 +58,7 @@ sub init {
   require MetaCPAN::Logger::WarnHandler;
   MetaCPAN::Logger::WarnHandler->import;
 
+  $ENV{LOG_ANY_DEFAULT_ADAPTER} = 'Log4perl';
   if ( $INC{'Log/Any.pm'} ) {
     require Log::Any::Adapter;
     require Log::Any::Adapter::Log4perl;
